@@ -24,7 +24,7 @@ public class MecanumDriveCommand extends CommandBase {
 
     @Override
     public void execute() {
-        drivetrain.drive(forward.getAsDouble(), strafe.getAsDouble(), turn.getAsDouble(),
+        drivetrain.drive(-forward.getAsDouble(), strafe.getAsDouble(), turn.getAsDouble(),
                 heading.getAsDouble(), speed.getAsDouble());
     }
 }

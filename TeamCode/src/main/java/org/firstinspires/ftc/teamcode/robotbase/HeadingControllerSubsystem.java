@@ -15,7 +15,6 @@ public class HeadingControllerSubsystem extends SubsystemBase {
 
     private DoubleSupplier gyroValue;
     private IntSupplier closestOrientationTarget;
-    private Camera camera;
 
     private double target = 0;
 
@@ -37,17 +36,9 @@ public class HeadingControllerSubsystem extends SubsystemBase {
         fType = Type.GYRO;
     }
 
-     public HeadingControllerSubsystem(Camera camera) {
-         kP = 0.6;
-         controller = new PIDController(kP, kI, kD);
-         this.camera = camera;
-         fType = Type.CAMERA;
-     }
-
     public double calculateTurn() {
-        double curValue;
+        double curValue = 0.0;
         if (fType == Type.CAMERA) {
-            curValue = camera.getObject_x();
 //            curValue = camera.getPipeline().getElementsAnalogCoordinates()[0];
 //            curValue = 0;
         } else {

@@ -22,10 +22,8 @@ public class RobotEx {
     protected final MecanumDriveCommand driveCommand;
 
     protected final IMUSubsystem gyro;
-    protected final Camera camera;
 
     protected final HeadingControllerSubsystem gyroFollow;
-    protected final HeadingControllerSubsystem cameraFollow;
 
     public RobotEx(HardwareMap hardwareMap, Telemetry telemetry, GamepadEx driverOp,
                    GamepadEx toolOp) {
@@ -46,10 +44,6 @@ public class RobotEx {
         //////////////////////////////////////////// IMU ///////////////////////////////////////////
         gyro = new IMUSubsystem(hardwareMap, this.telemetry, dashboardTelemetry);
         CommandScheduler.getInstance().registerSubsystem(gyro);
-
-        ////////////////////////////////////////// Camera //////////////////////////////////////////
-        camera = new Camera(hardwareMap, dashboard, telemetry,
-                () -> this.driverOp.getButton(GamepadKeys.Button.BACK));
 
         //////////////////////////////////////// Drivetrain ////////////////////////////////////////
         drive = new MecanumDriveSubsystem(hardwareMap);
@@ -82,12 +76,6 @@ public class RobotEx {
         driverOp.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON)
                 .whenPressed(new InstantCommand(gyroFollow::toggleState, gyroFollow));
 
-        ////////////////////////////////////// Camera Follower /////////////////////////////////////
-        cameraFollow = new HeadingControllerSubsystem(camera);
-        if (useCameraFollower)
-            driverOp.getGamepadButton(GamepadKeys.Button.START)
-                    .whenPressed(new InstantCommand(cameraFollow::toggleState, cameraFollow));
-
         ////////////////////////// Setup and Initialize Mechanisms Objects /////////////////////////
         initMechanisms(hardwareMap);
     }
@@ -99,8 +87,6 @@ public class RobotEx {
     public double drivetrainTurn() {
         if (gyroFollow.isEnabled())
             return gyroFollow.calculateTurn();
-        if (cameraFollow.isEnabled())
-            return cameraFollow.calculateTurn();
         return driverOp.getRightX();
     }
 
