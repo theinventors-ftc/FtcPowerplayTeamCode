@@ -112,7 +112,7 @@ public class MyClass {
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(homePose)
                                 .addTrajectory(hm)
-                                .addTrajectory(sm)
+//                                .addTrajectory(sm)
 //                                .addTrajectory()
 //                                .addTrajectory)
 //                                .addTrajectory(rm)

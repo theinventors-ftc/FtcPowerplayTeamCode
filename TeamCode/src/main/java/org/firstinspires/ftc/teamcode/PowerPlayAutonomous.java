@@ -189,6 +189,7 @@ public class PowerPlayAutonomous extends CommandOpMode {
             telemetry.update();
             run();
         }
+        
         reset();
     }
 }
