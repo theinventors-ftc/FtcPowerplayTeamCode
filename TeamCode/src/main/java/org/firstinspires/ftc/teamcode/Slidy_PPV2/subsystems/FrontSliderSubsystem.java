@@ -20,17 +20,15 @@ public class FrontSliderSubsystem extends SubsystemBase {
     }
 
     private State state;
-    private Telemetry telemetry;
 
     public FrontSliderSubsystem(HardwareMap hm, BooleanSupplier rightSup,
-                                BooleanSupplier leftSup, Telemetry telemetry) {
+                                BooleanSupplier leftSup) {
         rightServo = hm.get(CRServoImplEx.class, "frontSlR");
         leftServo = hm.get(CRServoImplEx.class, "frontSlL");
 
         this.rightSup = rightSup;
         this.leftSup = leftSup;
         this.state = State.CLOSING;
-        this.telemetry = telemetry;
     }
 
     public void periodic() {
@@ -41,8 +39,6 @@ public class FrontSliderSubsystem extends SubsystemBase {
         } else if (state == State.OPENING) {
 
         }
-        telemetry.addData("Right: ", rightSup.getAsBoolean());
-        telemetry.addData("Left: ", leftSup.getAsBoolean());
     }
 
     private void set(double power) {

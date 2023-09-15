@@ -6,6 +6,7 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
+import com.arcrobotics.ftclib.command.Robot;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -13,6 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.SlidyRobot;
@@ -31,6 +33,9 @@ import org.inventors.ftc.robotbase.GamepadExEx;
 @Autonomous(name = "TestAutonomous", group = "Tests")
 public class CommandGroupTest extends CommandOpMode {
     SlidyRobot robot;
+
+    protected DriveConstants RobotConstants;
+
     protected ElapsedTime runtime;
     protected MecanumDrivePPV2 drive;
     protected RoadRunnerSubsystem RR;
@@ -50,10 +55,12 @@ public class CommandGroupTest extends CommandOpMode {
         GamepadExEx driverOp = new GamepadExEx(gamepad1);
         GamepadExEx toolOp = new GamepadExEx(gamepad2);
 
-        robot = new SlidyRobot(hardwareMap, telemetry, driverOp, toolOp, AUTO, true,
+        RobotConstants = new DriveConstants();
+
+        robot = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
-        drive = new MecanumDrivePPV2(hardwareMap, AUTO);
+        drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
 
         RR = new RoadRunnerSubsystem(drive, false);
 
@@ -62,11 +69,11 @@ public class CommandGroupTest extends CommandOpMode {
         claw = new ClawSubsystem(hardwareMap);
         elevator = new ElevatorSubsystem(hardwareMap);
         basket =  new BasketSubsystem(hardwareMap);
-        arm = new ArmSubsystem(hardwareMap, telemetry);
+        arm = new ArmSubsystem(hardwareMap);
         rightSwitch = new LimitSwitchSubsystem(hardwareMap, "rightSwitch");
         leftSwitch = new LimitSwitchSubsystem(hardwareMap, "leftSwitch");
         frontSlider = new FrontSliderSubsystem(hardwareMap, () -> rightSwitch.getState(),
-                () -> leftSwitch.getState(), telemetry);
+                () -> leftSwitch.getState());
 
         scoringCommand = new SequentialCommandGroup(
                 new InstantCommand(arm::setMid, arm),
@@ -94,13 +101,13 @@ public class CommandGroupTest extends CommandOpMode {
         }
     }
 
-    @Override
-    public void run() {
-        super.run();
-        // TODO: Make telemetry subsystem/command and remove this function
-        robot.telemetryUpdate();
-        robot.dashboardTelemetryUpdate();
-    }
+//    @Override
+//    public void run() {
+//        super.run();
+//        // TODO: Make telemetry subsystem/command and remove this function
+//        robot.telemetryUpdate();
+//        robot.dashboardTelemetryUpdate();
+//    }
 
     @Override
     public void runOpMode() throws InterruptedException {

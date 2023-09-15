@@ -23,6 +23,7 @@ import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ConeDetectorSubsyste
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ElevatorSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.FrontSliderSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.LimitSwitchSubsystem;
+import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.GamepadExEx;
 import org.inventors.ftc.robotbase.RobotEx;
 
@@ -41,29 +42,36 @@ public class SlidyRobot extends RobotEx {
 
     private int index = 0;
 
-    public SlidyRobot(HardwareMap hm, Telemetry telemetry, GamepadExEx driverOp,
+    public SlidyRobot(HardwareMap hm, DriveConstants RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
                       GamepadExEx toolOp) {
-        super(hm, telemetry, driverOp, toolOp, OpModeType.TELEOP, false,
+        super(hm, RobotConstants, telemetry, driverOp, toolOp, OpModeType.TELEOP, false,
                 false);
     }
 
-    public SlidyRobot(HardwareMap hm, Telemetry telemetry, GamepadExEx driverOp,
+    public SlidyRobot(HardwareMap hm, DriveConstants RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
                       GamepadExEx toolOp, OpModeType opModeType, boolean camera,
                       boolean cameraFollower) {
-        super(hm, telemetry, driverOp, toolOp, opModeType, camera,
+        super(hm, RobotConstants, telemetry, driverOp, toolOp, opModeType, camera,
                 cameraFollower);
     }
 
     @Override
     public void initMechanismsAutonomous(HardwareMap hardwareMap) {
         claw = new ClawSubsystem(hardwareMap);
+
         elevator = new ElevatorSubsystem(hardwareMap);
-        elevator = new ElevatorSubsystem(hardwareMap);
+
         rightServoLim = new LimitSwitchSubsystem(hardwareMap, "rightSwitch");
         leftServoLim = new LimitSwitchSubsystem(hardwareMap, "leftSwitch");
+
         frontSlider = new FrontSliderSubsystem(hardwareMap, () -> rightServoLim.getState(),
-                () -> leftServoLim.getState(), telemetry);
-        arm = new ArmSubsystem(hardwareMap, telemetry);
+                () -> leftServoLim.getState());
+        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
+        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
+
+        arm = new ArmSubsystem(hardwareMap);
+        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
+
         basket = new BasketSubsystem(hardwareMap);
 
         //        PerpetualCommand autoLoop = new PerpetualCommand(new SequentialCommandGroup(
@@ -87,13 +95,22 @@ public class SlidyRobot extends RobotEx {
     @Override
     public void initMechanismsTeleOp(HardwareMap hardwareMap) {
         claw = new ClawSubsystem(hardwareMap);
+
         elevator = new ElevatorSubsystem(hardwareMap);
+
         rightServoLim = new LimitSwitchSubsystem(hardwareMap, "rightSwitch");
         leftServoLim = new LimitSwitchSubsystem(hardwareMap, "leftSwitch");
+
         frontSlider = new FrontSliderSubsystem(hardwareMap, () -> rightServoLim.getState(),
-                () -> leftServoLim.getState(), telemetry);
-        arm = new ArmSubsystem(hardwareMap, telemetry);
+                () -> leftServoLim.getState());
+        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
+        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
+
+        arm = new ArmSubsystem(hardwareMap);
+        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
+
         basket = new BasketSubsystem(hardwareMap);
+
         cone_detector = new ConeDetectorSubsystem(hardwareMap, 30);
 
         ////---------------------------------- Manual Actions ----------------------------------////

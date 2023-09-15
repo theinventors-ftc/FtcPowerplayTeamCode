@@ -15,6 +15,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.SlidyRobot;
@@ -34,6 +35,9 @@ import java.util.HashMap;
 @Autonomous(name = "AutoOneCone", group = "Final Autonomous")
 public class PowerPlayAutonomous extends CommandOpMode {
     SlidyRobot slidy;
+
+    protected DriveConstants RobotConstants;
+
     protected ElapsedTime runtime;
     protected MecanumDrivePPV2 drive;
     protected RoadRunnerSubsystem RR;
@@ -53,10 +57,12 @@ public class PowerPlayAutonomous extends CommandOpMode {
         GamepadExEx driverOp = new GamepadExEx(gamepad1);
         GamepadExEx toolOp = new GamepadExEx(gamepad2);
 
-        slidy = new SlidyRobot(hardwareMap, telemetry, driverOp, toolOp, AUTO, true,
+        RobotConstants = new DriveConstants();
+
+        slidy = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
-        drive = new MecanumDrivePPV2(hardwareMap, AUTO);
+        drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
 
         RR = new RoadRunnerSubsystem(drive, false);
 
@@ -67,11 +73,11 @@ public class PowerPlayAutonomous extends CommandOpMode {
         claw = new ClawSubsystem(hardwareMap);
         elevator = new ElevatorSubsystem(hardwareMap);
         basket =  new BasketSubsystem(hardwareMap);
-        arm = new ArmSubsystem(hardwareMap, telemetry);
+        arm = new ArmSubsystem(hardwareMap);
         rightSwitch = new LimitSwitchSubsystem(hardwareMap, "rightSwitch");
         leftSwitch = new LimitSwitchSubsystem(hardwareMap, "leftSwitch");
         frontSlider = new FrontSliderSubsystem(hardwareMap, () -> rightSwitch.getState(),
-                () -> leftSwitch.getState(), telemetry);
+                () -> leftSwitch.getState());
         cone_detector = new ConeDetectorSubsystem(hardwareMap, 30);
 
         scoringCommand = new SequentialCommandGroup(
@@ -103,13 +109,13 @@ public class PowerPlayAutonomous extends CommandOpMode {
         }
     }
 
-    @Override
-    public void run() {
-        super.run();
-        // TODO: Make telemetry subsystem/command and remove this function
-        slidy.telemetryUpdate();
-        slidy.dashboardTelemetryUpdate();
-    }
+//    @Override
+//    public void run() {
+//        super.run();
+//        // TODO: Make telemetry subsystem/command and remove this function
+//        slidy.telemetryUpdate();
+//        slidy.dashboardTelemetryUpdate();
+//    }
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -189,7 +195,7 @@ public class PowerPlayAutonomous extends CommandOpMode {
             telemetry.update();
             run();
         }
-        
+
         reset();
     }
 }

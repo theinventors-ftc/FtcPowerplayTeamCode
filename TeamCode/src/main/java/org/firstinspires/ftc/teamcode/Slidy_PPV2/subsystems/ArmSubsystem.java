@@ -12,7 +12,6 @@ public class ArmSubsystem extends SubsystemBase {
     private double pos;
     private double step = 0.01;
     private double[] autoPos = {0.72, 0.75, 0.92, 0.95, 1};
-    private Telemetry telemetry;
 
     enum State {
         INTAKE,
@@ -22,10 +21,9 @@ public class ArmSubsystem extends SubsystemBase {
 
     State state;
 
-    public ArmSubsystem(HardwareMap hm, Telemetry telemetry) {
+    public ArmSubsystem(HardwareMap hm) {
         servo = hm.get(ServoImplEx.class, "arm");
         this.setMid();
-        this.telemetry = telemetry;
     }
 
     public void setIntake() {
@@ -69,7 +67,7 @@ public class ArmSubsystem extends SubsystemBase {
             setIntake();
     }
 
-    public void periodic(){
-        telemetry.addData("Arm Pos: ", servo.getPosition());
+    public double getArmPosition() {
+        return servo.getPosition();
     }
 }

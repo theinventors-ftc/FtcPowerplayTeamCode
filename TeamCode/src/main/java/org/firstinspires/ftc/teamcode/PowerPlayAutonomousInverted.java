@@ -13,6 +13,7 @@ import com.arcrobotics.ftclib.command.button.Trigger;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.SlidyRobot;
@@ -29,6 +30,9 @@ import java.util.HashMap;
 @Autonomous(name = "AutoOneConeInv", group = "Final Autonomous")
 public class PowerPlayAutonomousInverted extends CommandOpMode {
     SlidyRobot robot;
+
+    protected DriveConstants RobotConstants;
+
     protected ElapsedTime runtime;
     protected MecanumDrivePPV2 drive;
     protected RoadRunnerSubsystem RR;
@@ -44,10 +48,12 @@ public class PowerPlayAutonomousInverted extends CommandOpMode {
         GamepadExEx driverOp = new GamepadExEx(gamepad1);
         GamepadExEx toolOp = new GamepadExEx(gamepad2);
 
-        robot = new SlidyRobot(hardwareMap, telemetry, driverOp, toolOp, AUTO, true,
+        RobotConstants = new DriveConstants();
+
+        robot = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
-        drive = new MecanumDrivePPV2(hardwareMap, AUTO);
+        drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
 
         RR = new RoadRunnerSubsystem(drive, true);
 
@@ -56,7 +62,7 @@ public class PowerPlayAutonomousInverted extends CommandOpMode {
         claw = new ClawSubsystem(hardwareMap);
         elevator = new ElevatorSubsystem(hardwareMap);
         basket =  new BasketSubsystem(hardwareMap);
-        arm = new ArmSubsystem(hardwareMap, telemetry);
+        arm = new ArmSubsystem(hardwareMap);
 
         scoringCommand = new SequentialCommandGroup(
                 new InstantCommand(arm::setMid, arm),
@@ -82,13 +88,13 @@ public class PowerPlayAutonomousInverted extends CommandOpMode {
             sleep(20);
         }
     }
-    @Override
-    public void run() {
-        super.run();
-        // TODO: Make telemetry subsystem/command and remove this function
-        robot.telemetryUpdate();
-        robot.dashboardTelemetryUpdate();
-    }
+//    @Override
+//    public void run() {
+//        super.run();
+//        // TODO: Make telemetry subsystem/command and remove this function
+//        robot.telemetryUpdate();
+//        robot.dashboardTelemetryUpdate();
+//    }
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();

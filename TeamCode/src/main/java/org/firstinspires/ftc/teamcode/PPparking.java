@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.inventors.ftc.opencvpipelines.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
@@ -17,6 +18,9 @@ import org.inventors.ftc.robotbase.GamepadExEx;
 public class PPparking extends CommandOpMode {
 
     SlidyRobot robot;
+
+    protected DriveConstants RobotConstants;
+
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
     protected ElapsedTime runtime;
     protected MecanumDrivePPV2 drive;
@@ -28,10 +32,12 @@ public class PPparking extends CommandOpMode {
         GamepadExEx driverOp = new GamepadExEx(gamepad1);
         GamepadExEx toolOp = new GamepadExEx(gamepad2);
 
-        robot = new SlidyRobot(hardwareMap, telemetry, driverOp, toolOp, AUTO, true,
+        RobotConstants = new DriveConstants();
+
+        robot = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
-        drive = new MecanumDrivePPV2(hardwareMap, AUTO);
+        drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
 
         RR = new RoadRunnerSubsystem(drive, false);
 
@@ -52,13 +58,13 @@ public class PPparking extends CommandOpMode {
         }
     }
 
-    @Override
-    public void run() {
-        super.run();
-        // TODO: Make telemetry subsystem/command and remove this function
-        robot.telemetryUpdate();
-        robot.dashboardTelemetryUpdate();
-    }
+//    @Override
+//    public void run() {
+//        super.run();
+//        // TODO: Make telemetry subsystem/command and remove this function
+//        robot.telemetryUpdate();
+//        robot.dashboardTelemetryUpdate();
+//    }
 
     @Override
     public void runOpMode() throws InterruptedException {
