@@ -86,7 +86,7 @@ public class RobotEx {
 
     public double drivetrainTurn() {
         if (gyroFollow.isEnabled())
-            return gyroFollow.calculateTurn();
+            return -gyroFollow.calculateTurn();
         return driverOp.getRightX();
     }
 

@@ -24,7 +24,10 @@ public class MecanumDriveSubsystem  extends SubsystemBase {
         frontRight = new MotorEx(hardwareMap, "frontRight");
         rearRight = new MotorEx(hardwareMap, "rearRight");
         rearLeft = new MotorEx(hardwareMap, "rearLeft");
-
+        frontLeft.setInverted(true);
+        frontRight.setInverted(true);
+        rearRight.setInverted(true);
+        rearLeft.setInverted(true);
 //        frontLeft_e = frontLeft.encoder;
 //        frontRight_e = frontRight.encoder;
 //        rearRight_e = rearRight.encoder;
@@ -47,7 +50,7 @@ public class MecanumDriveSubsystem  extends SubsystemBase {
     void drive(double strafeSpeed, double forwardSpeed, double turnSpeed, double heading,
                double maxSpeed) {
         drive.setMaxSpeed(0.5 * (1 + maxSpeed));
-        drive.driveFieldCentric(-strafeSpeed, forwardSpeed, -turnSpeed, heading);
+        drive.driveFieldCentric(-strafeSpeed, forwardSpeed, turnSpeed, heading);
     }
 
 //    public double getLeftEncoderVal() {

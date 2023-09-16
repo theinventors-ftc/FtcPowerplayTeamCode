@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.robotbase;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.hardware.RevIMU;
+import org.firstinspires.ftc.teamcode.robotbase.RevIMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -37,7 +37,7 @@ public class IMUSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        rawValue = imu.getHeading();
+        rawValue = imu.getYawPitchRoll()[0];
 
         calculateContinuousValue();
 
