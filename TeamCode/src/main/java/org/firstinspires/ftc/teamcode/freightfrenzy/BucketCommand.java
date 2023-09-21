@@ -8,7 +8,7 @@ public class BucketCommand extends CommandBase {
 
     public BucketCommand(BucketSubsystem bucket) {
         this.bucket = bucket;
-        addRequirements(this.bucket);
+        addRequirements(bucket);
     }
 
     @Override

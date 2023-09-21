@@ -23,7 +23,7 @@ public class RobotEx {
 
     protected final IMUSubsystem gyro;
 
-    protected final HeadingControllerSubsystem gyroFollow;
+//    protected final HeadingControllerSubsystem gyroFollow;
 
     public RobotEx(HardwareMap hardwareMap, Telemetry telemetry, GamepadEx driverOp,
                    GamepadEx toolOp) {
@@ -55,16 +55,16 @@ public class RobotEx {
         drive.setDefaultCommand(driveCommand);
 
         /////////////////////////////////////// Gyro Follower //////////////////////////////////////
-        gyroFollow = new HeadingControllerSubsystem(gyro::getValue,
-                gyro::findClosestOrientationTarget);
-        new Trigger(() -> driverOp.getRightY() >= 0.8).whenActive(
-                new InstantCommand(() -> gyroFollow.setGyroTarget(0), gyroFollow));
-        new Trigger(() -> driverOp.getRightY() <= 0.2).whenActive(
-                new InstantCommand(() -> gyroFollow.setGyroTarget(180), gyroFollow));
-        new Trigger(() -> driverOp.getRightX() >= 0.8).whenActive(
-                new InstantCommand(() -> gyroFollow.setGyroTarget(90), gyroFollow));
-        new Trigger(() -> driverOp.getRightX() <= 0.2).whenActive(
-                new InstantCommand(() -> gyroFollow.setGyroTarget(-90), gyroFollow));
+//        gyroFollow = new HeadingControllerSubsystem(gyro::getValue,
+//                gyro::findClosestOrientationTarget);
+//        new Trigger(() -> driverOp.getRightY() >= 0.8).whenActive(
+//                new InstantCommand(() -> gyroFollow.setGyroTarget(0), gyroFollow));
+//        new Trigger(() -> driverOp.getRightY() <= 0.2).whenActive(
+//                new InstantCommand(() -> gyroFollow.setGyroTarget(180), gyroFollow));
+//        new Trigger(() -> driverOp.getRightX() >= 0.8).whenActive(
+//                new InstantCommand(() -> gyroFollow.setGyroTarget(90), gyroFollow));
+//        new Trigger(() -> driverOp.getRightX() <= 0.2).whenActive(
+//                new InstantCommand(() -> gyroFollow.setGyroTarget(-90), gyroFollow));
 //        driverOp.getGamepadButton(GamepadKeys.Button.DPAD_UP)
 //                .whenPressed(new InstantCommand(() -> gyroFollow.setGyroTarget(0)));
 //        driverOp.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
@@ -73,8 +73,8 @@ public class RobotEx {
 //                .whenPressed(new InstantCommand(() -> gyroFollow.setGyroTarget(-90)));
 //        driverOp.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT)
 //                .whenPressed(new InstantCommand(() -> gyroFollow.setGyroTarget(90)));
-        driverOp.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON)
-                .whenPressed(new InstantCommand(gyroFollow::toggleState, gyroFollow));
+//        driverOp.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON)
+//                .whenPressed(new InstantCommand(gyroFollow::toggleState, gyroFollow));
 
         ////////////////////////// Setup and Initialize Mechanisms Objects /////////////////////////
         initMechanisms(hardwareMap);
@@ -85,8 +85,8 @@ public class RobotEx {
     }
 
     public double drivetrainTurn() {
-        if (gyroFollow.isEnabled())
-            return -gyroFollow.calculateTurn();
+//        if (gyroFollow.isEnabled())
+//            return gyroFollow.calculateTurn();
         return driverOp.getRightX();
     }
 

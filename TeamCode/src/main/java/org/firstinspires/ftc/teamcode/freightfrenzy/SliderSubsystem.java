@@ -17,6 +17,7 @@ public class SliderSubsystem extends SubsystemBase {
 
     public SliderSubsystem(HardwareMap hardwareMap) {
         this.motor = new MotorEx(hardwareMap, "slider");
+        this.motor.resetEncoder();
         this.motor.setInverted(true);
         this.motor.setRunMode(MotorEx.RunMode.PositionControl);
         this.motor.setZeroPowerBehavior(MotorEx.ZeroPowerBehavior.BRAKE);
@@ -39,7 +40,7 @@ public class SliderSubsystem extends SubsystemBase {
     }
 
     public void run() {
-        motor.set(0.5);
+        motor.set(0.05);
     }
 
     public void stop() {
