@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import static org.inventors.ftc.robotbase.RobotEx.OpModeType.AUTO;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -65,8 +64,6 @@ public class PowerPlayAutonomous extends CommandOpMode {
         drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
 
         RR = new RoadRunnerSubsystem(drive, false);
-
-        dashboardTelemetry = FtcDashboard.getInstance().getTelemetry();
 
         april_tag = new AprilTagDetectionSubsystem(slidy.camera, dashboardTelemetry);
 
@@ -180,9 +177,9 @@ public class PowerPlayAutonomous extends CommandOpMode {
         new Trigger(() -> runtime.seconds() >= 20).whenActive(
                 new SelectCommand(
                         new HashMap<Object, Command>() {{
-                            put(april_tag.LEFT, new InstantCommand(RR::runP1, RR));
+                            put(april_tag.LEFT, new InstantCommand(RR::runP3, RR));
                             put(april_tag.MIDDLE, new InstantCommand(RR::runTOMID, RR));
-                            put(april_tag.RIGHT, new InstantCommand(RR::runP3, RR));
+                            put(april_tag.RIGHT, new InstantCommand(RR::runP1, RR));
                             put(-1, new InstantCommand(RR::runTOMID, RR));
                         }},
                         () -> april_tag_found ? april_tag.getTagOfInterest().id : -1
