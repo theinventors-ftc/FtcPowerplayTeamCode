@@ -10,14 +10,14 @@ import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.BasketSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ElevatorSubsystem;
 
-public class SimpleAuto extends CommandBase {
+public class AutoOneConeCommand extends CommandBase {
     private ArmSubsystem arm;
     private BasketSubsystem basket;
     private ElevatorSubsystem elevator;
 
     private SequentialCommandGroup actions;
 
-    public SimpleAuto(ArmSubsystem arm, BasketSubsystem basket, ElevatorSubsystem elevator) {
+    public AutoOneConeCommand(ArmSubsystem arm, BasketSubsystem basket, ElevatorSubsystem elevator) {
         this.arm = arm;
         this.basket = basket;
         this.elevator = elevator;

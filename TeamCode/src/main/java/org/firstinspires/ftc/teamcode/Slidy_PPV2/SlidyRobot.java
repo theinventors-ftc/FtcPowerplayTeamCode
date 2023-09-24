@@ -73,23 +73,6 @@ public class SlidyRobot extends RobotEx {
         telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
 
         basket = new BasketSubsystem(hardwareMap);
-
-        //        PerpetualCommand autoLoop = new PerpetualCommand(new SequentialCommandGroup(
-//                new SlidersGroup(slider, frontSlider, true),
-//                new InstantCommand(basket::setOuttake, basket), //Outtake the Cone
-//                new WaitCommand(1000),
-//                new ParallelCommandGroup(
-//                        new ConeCollection(claw, arm, frontSlider), // Collect Cone
-//                        new ResetSliderBasket(slider, basket) // Reset Balancers
-//                ),
-//                new InstantCommand(arm::setTravel, arm), //Transfer the cone
-//                new InstantCommand(claw::release, claw), // Release the cone to tha basket
-//                new InstantCommand(arm::setMid, arm) // Set Arm in Mid position
-//        ));
-
-//        autoLoop.interruptOn(
-//                () -> time >= 25;
-//        );
     }
 
     @Override
@@ -128,12 +111,6 @@ public class SlidyRobot extends RobotEx {
                 .whenPressed(new ElevatorCommand(elevator, ElevatorSubsystem.Level.MID));
         toolOp.getGamepadButton(GamepadKeys.Button.DPAD_UP)
                 .whenPressed(new ElevatorCommand(elevator, ElevatorSubsystem.Level.HIGH));
-
-        //Manual Height Adjustment
-//        new Trigger(() -> toolOp.getLeftY() >= 0.6).whileActiveContinuous(
-//                new ElevatorManualCommand(elevator, 1));
-//        new Trigger(() -> toolOp.getLeftY() <= -0.6).whileActiveContinuous(
-//                new ElevatorManualCommand(elevator, -1));
 
         CommandScheduler.getInstance().registerSubsystem(elevator);
         elevator.setDefaultCommand(new ElevatorManualCommand(elevator, toolOp::getLeftY));
@@ -187,11 +164,6 @@ public class SlidyRobot extends RobotEx {
         toolOp.getGamepadButton(GamepadKeys.Button.X)
                 .whenPressed(new InstantCommand(arm::setMid, arm));
 
-//        new Trigger(() -> toolOp.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) >= 0.5)
-//                .whileActiveContinuous(new InstantCommand(arm::increasePos));
-//        new Trigger(() -> toolOp.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) >= 0.5)
-//                .whileActiveContinuous(new InstantCommand(arm::decreasePos));
-
 
         //---------------------------------------- Basket ----------------------------------------//
 
@@ -201,13 +173,6 @@ public class SlidyRobot extends RobotEx {
         ////----------------------------------- Auto Actions -----------------------------------////
         new Trigger(() -> cone_detector.isConeDetected())
                 .whenActive(toolOp::rumble);
-
-//        toolOp.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
-//                        .whenPressed(new SequentialCommandGroup(
-//                                new FrontSliderConeCommand(frontSlider,
-//                                        cone_detector::isConeDetected, arm),
-//                                new RumbleCommand(toolOp)
-//                        ));
 
         toolOp.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(

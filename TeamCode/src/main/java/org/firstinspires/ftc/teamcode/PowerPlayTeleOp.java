@@ -1,13 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.SlidyRobot;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.GamepadExEx;
-import org.inventors.ftc.robotbase.MotorExEx;
 
 @TeleOp(name = "PowerPlayBucharest2023", group = "Final TeleOPs")
 public class PowerPlayTeleOp extends CommandOpMode {
@@ -26,12 +24,4 @@ public class PowerPlayTeleOp extends CommandOpMode {
 
         Slidy = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp);
     }
-
-//    @Override
-//    public void run() {
-//        super.run();
-//        // TODO: Make telemetry subsystem/command and remove this function
-//        Slidy.telemetryUpdate();
-//        Slidy.dashboardTelemetryUpdate();
-//    }
 }
