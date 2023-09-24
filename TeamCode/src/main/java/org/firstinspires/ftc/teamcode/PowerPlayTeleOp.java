@@ -22,6 +22,8 @@ public class PowerPlayTeleOp extends CommandOpMode {
 
         RobotConstants = new DriveConstants();
 
+        RobotConstants.COMMON_FEED_FORWARD = true;
+
         Slidy = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp);
     }
 
