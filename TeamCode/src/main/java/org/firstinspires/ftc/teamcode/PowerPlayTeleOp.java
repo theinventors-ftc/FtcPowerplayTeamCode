@@ -3,13 +3,13 @@ package org.firstinspires.ftc.teamcode;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.PowerPlayRobot;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.GamepadExEx;
 
 @TeleOp(name = "PowerPlayBucharest2023", group = "Final TeleOPs")
 public class PowerPlayTeleOp extends CommandOpMode {
-    private PowerPlayRobot Slidy;
+    private PowerPlayRobot robot;
 
     private DriveConstants RobotConstants;
 
@@ -22,6 +22,6 @@ public class PowerPlayTeleOp extends CommandOpMode {
 
         RobotConstants.COMMON_FEED_FORWARD = true;
 
-        Slidy = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp);
+        robot = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp);
     }
 }

@@ -7,8 +7,8 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.PowerPlayRobot;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.RoadRunnerSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystem;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.GamepadExEx;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;

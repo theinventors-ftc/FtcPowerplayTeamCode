@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Slidy_PPV2.commands;
+package org.firstinspires.ftc.teamcode.PowerPlayRobot.commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -6,9 +6,9 @@ import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ArmSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.BasketSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ElevatorSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.BasketSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ElevatorSubsystem;
 
 public class AutoOneConeCommand extends CommandBase {
     private ArmSubsystem arm;

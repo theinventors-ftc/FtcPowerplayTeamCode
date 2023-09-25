@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 //import org.apache.commons.math3.geometry.euclidean.twod.Line;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ClawSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ClawSubsystem;
 
 @Disabled
 @Config

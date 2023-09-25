@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.Slidy_PPV2.commands;
+package org.firstinspires.ftc.teamcode.PowerPlayRobot.commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ElevatorSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.FrontSliderSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ElevatorSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.FrontSliderSubsystem;
 
 public class SlidersGroup extends CommandBase {
     private ElevatorSubsystem elevator;

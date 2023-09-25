@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Slidy_PPV2;
+package org.firstinspires.ftc.teamcode.PowerPlayRobot;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -10,19 +10,19 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.ElevatorCommand;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.ElevatorManualCommand;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.FrontSliderConeCommand;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.FrontSliderManualCommand;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.ResetSliderBasket;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.RumbleCommand;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ArmSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.BasketSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ClawSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ConeDetectorSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ElevatorSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.FrontSliderSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.LimitSwitchSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.ElevatorCommand;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.ElevatorManualCommand;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.FrontSliderConeCommand;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.FrontSliderManualCommand;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.ResetSliderBasket;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.RumbleCommand;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.BasketSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ClawSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ConeDetectorSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ElevatorSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.FrontSliderSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.LimitSwitchSubsystem;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.GamepadExEx;
 import org.inventors.ftc.robotbase.RobotEx;

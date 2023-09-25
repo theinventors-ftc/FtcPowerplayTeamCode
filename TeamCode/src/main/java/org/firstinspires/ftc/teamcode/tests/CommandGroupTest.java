@@ -15,17 +15,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.PowerPlayRobot;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.RoadRunnerSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.ElevatorCommand;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ArmSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.BasketSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ClawSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ConeDetectorSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ElevatorSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.FrontSliderSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.LimitSwitchSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.AprilTagDetectionSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.ElevatorCommand;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.BasketSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ClawSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ConeDetectorSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ElevatorSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.FrontSliderSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.LimitSwitchSubsystem;
 import org.inventors.ftc.robotbase.GamepadExEx;
 
 @Disabled

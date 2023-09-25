@@ -1,8 +1,8 @@
-package org.firstinspires.ftc.teamcode.Slidy_PPV2.commands;
+package org.firstinspires.ftc.teamcode.PowerPlayRobot.commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ElevatorSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ElevatorSubsystem;
 
 import java.util.function.DoubleSupplier;
 

@@ -9,19 +9,20 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.inventors.ftc.opencvpipelines.AprilTagDetectionPipeline;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.PowerPlayRobot;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.RoadRunnerSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.AprilTagDetectionSubsystem;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystem;
 import org.inventors.ftc.robotbase.GamepadExEx;
 
-@Autonomous(name = "AutoOnlyParking", group = "Final Autonomous")
-public class PPparking extends CommandOpMode {
+@Autonomous(name = "AutoOnlyParkingInv", group = "Final Autonomous")
+public class PowerPlayAutonomousParkingInverted extends CommandOpMode {
 
     PowerPlayRobot robot;
 
     protected DriveConstants RobotConstants;
 
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
+
     protected ElapsedTime runtime;
     protected MecanumDrivePPV2 drive;
     protected RoadRunnerSubsystem RR;
@@ -39,7 +40,7 @@ public class PPparking extends CommandOpMode {
 
         drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
 
-        RR = new RoadRunnerSubsystem(drive, false);
+        RR = new RoadRunnerSubsystem(drive, true);
 
         april_tag = new AprilTagDetectionSubsystem(robot.camera, telemetry);
 
@@ -48,10 +49,6 @@ public class PPparking extends CommandOpMode {
 
     public void waitForStart() {
         /////////////////////////////////// Recognizing the Tag ///////////////////////////////////
-        /*
-         * The INIT-loop:
-         * This REPLACES waitForStart!
-         */
         while (!isStarted() && !isStopRequested()) {
             april_tag.aprilTagCheck();
             sleep(20);
@@ -70,11 +67,7 @@ public class PPparking extends CommandOpMode {
 
         if (isStopRequested()) return;
 
-        RR.runHS();
-
-        if (april_tag.getTagOfInterest().id == april_tag.LEFT) RR.runP1();
-        else if (april_tag.getTagOfInterest().id == april_tag.RIGHT|| april_tag.getTagOfInterest() == null) RR.runP3();
-        else RR.runTOMID();
+        RR.runTEST();
 
         // run the scheduler
         while (!isStopRequested() && opModeIsActive()) {
