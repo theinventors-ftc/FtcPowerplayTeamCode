@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.SlidyRobot;
+import org.firstinspires.ftc.teamcode.Slidy_PPV2.PowerPlayRobot;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.RoadRunnerSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.ElevatorCommand;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ArmSubsystem;
@@ -29,7 +29,7 @@ import java.util.HashMap;
 
 @Autonomous(name = "AutoOneConeInv", group = "Final Autonomous")
 public class PowerPlayAutonomousInverted extends CommandOpMode {
-    SlidyRobot robot;
+    PowerPlayRobot robot;
 
     protected DriveConstants RobotConstants;
 
@@ -50,7 +50,7 @@ public class PowerPlayAutonomousInverted extends CommandOpMode {
 
         RobotConstants = new DriveConstants();
 
-        robot = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
+        robot = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
         drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
@@ -79,22 +79,11 @@ public class PowerPlayAutonomousInverted extends CommandOpMode {
     }
     public void waitForStart() {
         /////////////////////////////////// Recognizing the Tag ///////////////////////////////////
-        /*
-         * The INIT-loop:
-         * This REPLACES waitForStart!
-         */
         while (!isStarted() && !isStopRequested()) {
             april_tag.aprilTagCheck();
             sleep(20);
         }
     }
-//    @Override
-//    public void run() {
-//        super.run();
-//        // TODO: Make telemetry subsystem/command and remove this function
-//        robot.telemetryUpdate();
-//        robot.dashboardTelemetryUpdate();
-//    }
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();
@@ -109,53 +98,6 @@ public class PowerPlayAutonomousInverted extends CommandOpMode {
                 new InstantCommand(RR::runHS2, RR),
                 scoringCommand
         ));
-
-        /*
-
-        schedule(new SequentialCommandGroup(
-                        new InstantCommand(RR::runHS2, RR),
-                        new InstantCommand(arm::setMid, arm),
-                        new WaitCommand(300),
-                        new ElevatorCommand(elevator, ElevatorSubsystem.Level.AUTO_SCORING),
-                        new InstantCommand(basket::setOuttake, basket),
-                        new WaitCommand(1500),
-                        new ParallelCommandGroup(
-                                new InstantCommand(basket::setTravel, basket),
-                                new ElevatorCommand(elevator, ElevatorSubsystem.Level.LOW),
-                                new InstantCommand(claw::release, claw),
-                                new InstantCommand(() -> arm.setAutonomousPosition(0), arm)
-                        ),
-                        new FrontSliderConeCommand(frontSlider, cone_detector::isConeDetected, arm),
-                        new InstantCommand(claw::grab, claw),
-                        new WaitCommand(200),
-                        new ParallelCommandGroup(
-                                new InstantCommand(arm::setTravel, arm),
-                                new InstantCommand(frontSlider::close, frontSlider)
-                        ),
-                        new WaitCommand(800),
-                        new InstantCommand(claw::release, claw), // Release the cone to tha basket
-                        new WaitCommand(500),
-                        new ElevatorCommand(elevator, ElevatorSubsystem.Level.TRAVEL),
-                        new WaitCommand(100),
-                        new InstantCommand(() -> frontSlider.manual(0.4), frontSlider),
-                        new WaitCommand(400),
-                        new InstantCommand(() -> frontSlider.stop(), frontSlider),
-                        new ParallelCommandGroup(
-                                new InstantCommand(arm::setMid, arm),
-                                new InstantCommand(frontSlider::close, frontSlider)
-                        ),
-                        new WaitCommand(600),
-                        new ElevatorCommand(elevator, ElevatorSubsystem.Level.AUTO_SCORING),
-                        new InstantCommand(basket::setOuttake, basket),
-                        new WaitCommand(1500),
-                        new ParallelCommandGroup(
-                                new InstantCommand(basket::setTravel, basket),
-                                new ElevatorCommand(elevator, ElevatorSubsystem.Level.LOW)
-                        )
-                )
-        );
-
-         */
 
         //Select Command Auto
         new Trigger(() -> runtime.seconds() >= 20).whenActive(

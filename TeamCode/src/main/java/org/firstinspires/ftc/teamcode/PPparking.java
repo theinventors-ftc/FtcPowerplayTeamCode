@@ -10,14 +10,14 @@ import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.inventors.ftc.opencvpipelines.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.SlidyRobot;
+import org.firstinspires.ftc.teamcode.Slidy_PPV2.PowerPlayRobot;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.RoadRunnerSubsystem;
 import org.inventors.ftc.robotbase.GamepadExEx;
 
 @Autonomous(name = "AutoOnlyParking", group = "Final Autonomous")
 public class PPparking extends CommandOpMode {
 
-    SlidyRobot robot;
+    PowerPlayRobot robot;
 
     protected DriveConstants RobotConstants;
 
@@ -34,7 +34,7 @@ public class PPparking extends CommandOpMode {
 
         RobotConstants = new DriveConstants();
 
-        robot = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
+        robot = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
         drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
@@ -57,14 +57,6 @@ public class PPparking extends CommandOpMode {
             sleep(20);
         }
     }
-
-//    @Override
-//    public void run() {
-//        super.run();
-//        // TODO: Make telemetry subsystem/command and remove this function
-//        robot.telemetryUpdate();
-//        robot.dashboardTelemetryUpdate();
-//    }
 
     @Override
     public void runOpMode() throws InterruptedException {

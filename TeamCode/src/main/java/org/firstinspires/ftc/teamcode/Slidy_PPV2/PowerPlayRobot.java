@@ -27,7 +27,7 @@ import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.GamepadExEx;
 import org.inventors.ftc.robotbase.RobotEx;
 
-public class SlidyRobot extends RobotEx {
+public class PowerPlayRobot extends RobotEx {
     //----------------------------------- Initialize Subsystems -----------------------------------//
     private ClawSubsystem claw;
     private ElevatorSubsystem elevator;
@@ -42,15 +42,15 @@ public class SlidyRobot extends RobotEx {
 
     private int index = 0;
 
-    public SlidyRobot(HardwareMap hm, DriveConstants RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
-                      GamepadExEx toolOp) {
+    public PowerPlayRobot(HardwareMap hm, DriveConstants RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
+                          GamepadExEx toolOp) {
         super(hm, RobotConstants, telemetry, driverOp, toolOp, OpModeType.TELEOP, false,
                 false);
     }
 
-    public SlidyRobot(HardwareMap hm, DriveConstants RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
-                      GamepadExEx toolOp, OpModeType opModeType, boolean camera,
-                      boolean cameraFollower) {
+    public PowerPlayRobot(HardwareMap hm, DriveConstants RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
+                          GamepadExEx toolOp, OpModeType opModeType, boolean camera,
+                          boolean cameraFollower) {
         super(hm, RobotConstants, telemetry, driverOp, toolOp, opModeType, camera,
                 cameraFollower);
     }

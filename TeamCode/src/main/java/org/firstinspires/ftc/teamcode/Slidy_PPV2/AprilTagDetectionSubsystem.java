@@ -27,7 +27,6 @@ public class AprilTagDetectionSubsystem {
 
     // Tag ID 1,2,3 from the 36h11 family
 
-
     AprilTagDetection tagOfInterest = null;
     boolean tagFound = false;
     protected Camera camera;

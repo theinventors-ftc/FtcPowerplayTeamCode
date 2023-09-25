@@ -36,8 +36,6 @@ public class SliderConstantsTesting extends LinearOpMode {
     public void runOpMode() {
         sliderMotor = new MotorEx(hardwareMap, "slider", Motor.GoBILDA.RPM_312);
         sliderMotor.setRunMode(Motor.RunMode.VelocityControl);
-
-//        sliderMotor.setPositionCoefficient(KP);
         sliderMotor.setFeedforwardCoefficients(0, 0, 0);//2795
         driverOp = new GamepadEx(gamepad1);
 
@@ -47,7 +45,6 @@ public class SliderConstantsTesting extends LinearOpMode {
             vel = (1-A)*sliderMotor.getCorrectedVelocity() + A*vel;
 
             if(KP != last_KP || KS != last_KS || KV != last_KV || KA != last_KA) {
-//                sliderMotor.setPositionCoefficient(KP);
                 sliderMotor.setFeedforwardCoefficients(KS, KV, KA);
 
                 last_KP = KP;

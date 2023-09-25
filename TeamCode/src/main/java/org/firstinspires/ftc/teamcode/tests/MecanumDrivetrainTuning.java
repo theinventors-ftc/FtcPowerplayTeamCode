@@ -48,13 +48,7 @@ public class MecanumDrivetrainTuning extends LinearOpMode {
         rearRight.setFeedforwardCoefficients(220, 1.07, 0);//2795
         frontLeft.setIntegralBounds(minIntegralBound, maxIntegralBound);
 
-//        frontLeft.setInverted(true);
-//        frontRight.setInverted(true);
-//        rearRight.setInverted(true);
-//        rearLeft.setInverted(true);
-
         drive = new MecanumDrive(frontLeft, frontRight, rearLeft, rearRight);
-//        drive.setMaxSpeed();
 
         waitForStart();
 

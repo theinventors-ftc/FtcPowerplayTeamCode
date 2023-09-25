@@ -6,7 +6,6 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
-import com.arcrobotics.ftclib.command.Robot;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -17,7 +16,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.SlidyRobot;
+import org.firstinspires.ftc.teamcode.Slidy_PPV2.PowerPlayRobot;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.RoadRunnerSubsystem;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.commands.ElevatorCommand;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.subsystems.ArmSubsystem;
@@ -32,7 +31,7 @@ import org.inventors.ftc.robotbase.GamepadExEx;
 @Disabled
 @Autonomous(name = "TestAutonomous", group = "Tests")
 public class CommandGroupTest extends CommandOpMode {
-    SlidyRobot robot;
+    PowerPlayRobot robot;
 
     protected DriveConstants RobotConstants;
 
@@ -57,7 +56,7 @@ public class CommandGroupTest extends CommandOpMode {
 
         RobotConstants = new DriveConstants();
 
-        robot = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
+        robot = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
         drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
@@ -91,23 +90,11 @@ public class CommandGroupTest extends CommandOpMode {
     }
 
     public void waitForStart() {
-        /////////////////////////////////// Recognizing the Tag ///////////////////////////////////
-        /*
-         * The INIT-loop:
-         * This REPLACES waitForStart!
-         */
+        /////////////////////////////////// Recognizing the Tag ////////////////////////////////////
         while (!isStarted() && !isStopRequested()) {
             sleep(20);
         }
     }
-
-//    @Override
-//    public void run() {
-//        super.run();
-//        // TODO: Make telemetry subsystem/command and remove this function
-//        robot.telemetryUpdate();
-//        robot.dashboardTelemetryUpdate();
-//    }
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -126,62 +113,6 @@ public class CommandGroupTest extends CommandOpMode {
                 new WaitCommand(1500),
                 new InstantCommand(arm::setIntake, arm)
         );
-
-        schedule(test);
-
-/*        schedule(new SequentialCommandGroup(
-                new InstantCommand(arm::setIntake, arm),
-                new WaitCommand(1500),
-                new InstantCommand(arm::setTravel, arm),
-                scoringCommand,
-                new WaitCommand(1500),
-                new InstantCommand(arm::setIntake, arm)
-        ));*/
-/*
-        schedule(new SequentialCommandGroup(
-                        new InstantCommand(RR::runHS2, RR),
-                        new InstantCommand(arm::setMid, arm),
-                        new WaitCommand(300),
-                        new ElevatorCommand(elevator, ElevatorSubsystem.Level.AUTO_SCORING),
-                        new InstantCommand(basket::setOuttake, basket),
-                        new WaitCommand(1500),
-                        new ParallelCommandGroup(
-                                new InstantCommand(basket::setTravel, basket),
-                                new ElevatorCommand(elevator, ElevatorSubsystem.Level.LOW),
-                                new InstantCommand(claw::release, claw),
-                                new InstantCommand(() -> arm.setAutonomousPosition(0), arm)
-                        ),
-                        new FrontSliderConeCommand(frontSlider, cone_detector::isConeDetected, arm),
-                        new InstantCommand(claw::grab, claw),
-                        new WaitCommand(200),
-                        new ParallelCommandGroup(
-                                new InstantCommand(arm::setTravel, arm),
-                                new InstantCommand(frontSlider::close, frontSlider)
-                        ),
-                        new WaitCommand(800),
-                        new InstantCommand(claw::release, claw), // Release the cone to tha basket
-                        new WaitCommand(500),
-                        new ElevatorCommand(elevator, ElevatorSubsystem.Level.TRAVEL),
-                        new WaitCommand(100),
-                        new InstantCommand(() -> frontSlider.manual(0.4), frontSlider),
-                        new WaitCommand(400),
-                        new InstantCommand(() -> frontSlider.stop(), frontSlider),
-                        new ParallelCommandGroup(
-                                new InstantCommand(arm::setMid, arm),
-                                new InstantCommand(frontSlider::close, frontSlider)
-                        ),
-                        new WaitCommand(600),
-                        new ElevatorCommand(elevator, ElevatorSubsystem.Level.AUTO_SCORING),
-                        new InstantCommand(basket::setOuttake, basket),
-                        new WaitCommand(1500),
-                        new ParallelCommandGroup(
-                                new InstantCommand(basket::setTravel, basket),
-                                new ElevatorCommand(elevator, ElevatorSubsystem.Level.LOW)
-                        )
-                )
-        );
-
- */
 
         // run the scheduler
         while (!isStopRequested() && opModeIsActive()) {

@@ -23,7 +23,7 @@ public class MotorVelocityControlTesting extends LinearOpMode {
     MotorExEx frontRight;
     MotorExEx rearLeft;
     MotorExEx rearRight;
-//    MotorGroup group;
+
     MecanumDrive mecanum;
     GamepadEx driverOp;
 
@@ -56,9 +56,6 @@ public class MotorVelocityControlTesting extends LinearOpMode {
         rearLeft.setRunMode(Motor.RunMode.VelocityControl);
         rearRight.setRunMode(Motor.RunMode.VelocityControl);
 
-//        minIntegralBound = -frontLeft.ACHIEVABLE_MAX_TICKS_PER_SECOND;
-//        maxIntegralBound = frontLeft.ACHIEVABLE_MAX_TICKS_PER_SECOND;
-
         frontLeft.setVeloCoefficients(KP, KI, KD);
         frontLeft.setFeedforwardCoefficients(150, 1.1, 0);//2795
         frontLeft.setIntegralBounds(minIntegralBound, maxIntegralBound);
@@ -77,18 +74,9 @@ public class MotorVelocityControlTesting extends LinearOpMode {
         frontLeft.setInverted(true);
         rearLeft.setInverted(true);
 
-//        mecanum = new MecanumDrive(frontLeft, frontRight,
-//                rearLeft, rearRight);
-
         waitForStart();
 
         while(opModeIsActive()) {
-//            mecanum.driveRobotCentric(
-//                    -driverOp.getLeftX(),
-//                    -driverOp.getLeftY(),
-//                    -driverOp.getRightX()
-//            );
-
             vel_1 = A*frontLeft.getCorrectedVelocity() + (1-A)*vel_1;
             vel_2 = A*frontRight.getCorrectedVelocity() + (1-A)*vel_2;
             vel_3 = A*rearLeft.getCorrectedVelocity() + (1-A)*vel_3;
@@ -105,10 +93,6 @@ public class MotorVelocityControlTesting extends LinearOpMode {
                 last_KD = KD;
             }
 
-//            frontLeft.setVeloCoefficients(KP, KI, KD);
-//            frontRight.setVeloCoefficients(KP, KI, KD);
-//            rearLeft.setVeloCoefficients(KP, KI, KD);
-//            rearRight.setVeloCoefficients(KP, KI, KD);
             frontLeft.set(driverOp.getLeftY());
             frontRight.set(driverOp.getLeftY());
             rearLeft.set(driverOp.getLeftY());

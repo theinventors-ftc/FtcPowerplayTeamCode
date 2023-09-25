@@ -14,7 +14,7 @@ public class ElevatorManualCommand extends CommandBase {
     public ElevatorManualCommand(ElevatorSubsystem elevator, DoubleSupplier elevate_speed){
         this.elevator = elevator;
         this.elevate_speed = elevate_speed;
-//        this.direction = direction;
+
         addRequirements(this.elevator);
     }
 
@@ -33,9 +33,4 @@ public class ElevatorManualCommand extends CommandBase {
         elevator.setAuto();
         elevator.run();
     }
-
-//    @Override
-//    public boolean isFinished() {
-//        return false;
-//    }
 }

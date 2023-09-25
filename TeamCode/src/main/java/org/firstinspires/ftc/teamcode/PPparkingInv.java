@@ -10,14 +10,14 @@ import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.inventors.ftc.opencvpipelines.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.AprilTagDetectionSubsystem;
-import org.firstinspires.ftc.teamcode.Slidy_PPV2.SlidyRobot;
+import org.firstinspires.ftc.teamcode.Slidy_PPV2.PowerPlayRobot;
 import org.firstinspires.ftc.teamcode.Slidy_PPV2.RoadRunnerSubsystem;
 import org.inventors.ftc.robotbase.GamepadExEx;
 
 @Autonomous(name = "AutoOnlyParkingInv", group = "Final Autonomous")
 public class PPparkingInv extends CommandOpMode {
 
-    SlidyRobot robot;
+    PowerPlayRobot robot;
 
     protected DriveConstants RobotConstants;
 
@@ -35,7 +35,7 @@ public class PPparkingInv extends CommandOpMode {
 
         RobotConstants = new DriveConstants();
 
-        robot = new SlidyRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
+        robot = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
         drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
@@ -49,23 +49,11 @@ public class PPparkingInv extends CommandOpMode {
 
     public void waitForStart() {
         /////////////////////////////////// Recognizing the Tag ///////////////////////////////////
-        /*
-         * The INIT-loop:
-         * This REPLACES waitForStart!
-         */
         while (!isStarted() && !isStopRequested()) {
             april_tag.aprilTagCheck();
             sleep(20);
         }
     }
-
-//    @Override
-//    public void run() {
-//        super.run();
-//        // TODO: Make telemetry subsystem/command and remove this function
-//        robot.telemetryUpdate();
-//        robot.dashboardTelemetryUpdate();
-//    }
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -80,12 +68,6 @@ public class PPparkingInv extends CommandOpMode {
         if (isStopRequested()) return;
 
         RR.runTEST();
-
-//        RR.runHS();
-//
-//        if (april_tag.getTagOfInterest().id == april_tag.LEFT) RR.runP1();
-//        else if (april_tag.getTagOfInterest().id == april_tag.RIGHT|| april_tag.getTagOfInterest() == null) RR.runP3();
-//        else RR.runTOMID();
 
         // run the scheduler
         while (!isStopRequested() && opModeIsActive()) {
