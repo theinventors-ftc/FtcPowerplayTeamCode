@@ -14,9 +14,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.ApriltagDetectionSubsystem;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
-import org.firstinspires.ftc.teamcode.PowerPlayRobot.AprilTagDetectionSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.ElevatorCommand;
@@ -33,14 +33,14 @@ import java.util.HashMap;
 
 @Autonomous(name = "AutoOneCone", group = "Final Autonomous")
 public class PowerPlayAutonomous extends CommandOpMode {
-    PowerPlayRobot slidy;
+    PowerPlayRobot robot;
 
     protected DriveConstants RobotConstants;
 
     protected ElapsedTime runtime;
     protected MecanumDrivePPV2 drive;
     protected RoadRunnerSubsystem RR;
-    protected AprilTagDetectionSubsystem april_tag;
+    protected ApriltagDetectionSubsystem april_tag;
     protected ClawSubsystem claw;
     protected ElevatorSubsystem elevator;
     protected BasketSubsystem basket;
@@ -58,14 +58,14 @@ public class PowerPlayAutonomous extends CommandOpMode {
 
         RobotConstants = new DriveConstants();
 
-        slidy = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
+        robot = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
         drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
 
         RR = new RoadRunnerSubsystem(drive, false);
 
-        april_tag = new AprilTagDetectionSubsystem(slidy.camera, dashboardTelemetry);
+        april_tag = new ApriltagDetectionSubsystem(telemetry, robot.getDashboardTelemetry(), hardwareMap, "webcam"); // TODO Pass DashTelemetry Instead of double telemetry
 
         claw = new ClawSubsystem(hardwareMap);
         elevator = new ElevatorSubsystem(hardwareMap);

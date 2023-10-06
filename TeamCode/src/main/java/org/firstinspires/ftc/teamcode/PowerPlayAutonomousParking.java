@@ -6,10 +6,10 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.ApriltagDetectionSubsystem;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.inventors.ftc.opencvpipelines.AprilTagDetectionPipeline;
-import org.firstinspires.ftc.teamcode.PowerPlayRobot.AprilTagDetectionSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystem;
 import org.inventors.ftc.robotbase.GamepadExEx;
@@ -25,7 +25,7 @@ public class PowerPlayAutonomousParking extends CommandOpMode {
     protected ElapsedTime runtime;
     protected MecanumDrivePPV2 drive;
     protected RoadRunnerSubsystem RR;
-    protected AprilTagDetectionSubsystem april_tag;
+    protected ApriltagDetectionSubsystem april_tag;
 
     @Override
     public void initialize() {
@@ -41,7 +41,7 @@ public class PowerPlayAutonomousParking extends CommandOpMode {
 
         RR = new RoadRunnerSubsystem(drive, false);
 
-        april_tag = new AprilTagDetectionSubsystem(robot.camera, telemetry);
+        april_tag = new ApriltagDetectionSubsystem(telemetry, robot.getDashboardTelemetry(), hardwareMap, "webcam"); // TODO Pass DashTelemetry Instead of double telemetry
 
         runtime = new ElapsedTime();
     }

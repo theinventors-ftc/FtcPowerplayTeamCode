@@ -66,11 +66,11 @@ public class PowerPlayRobot extends RobotEx {
 
         frontSlider = new FrontSliderSubsystem(hardwareMap, () -> rightServoLim.getState(),
                 () -> leftServoLim.getState());
-        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
-        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
+//        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
+//        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
 
         arm = new ArmSubsystem(hardwareMap);
-        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
+//        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
 
         basket = new BasketSubsystem(hardwareMap);
     }
@@ -86,11 +86,11 @@ public class PowerPlayRobot extends RobotEx {
 
         frontSlider = new FrontSliderSubsystem(hardwareMap, () -> rightServoLim.getState(),
                 () -> leftServoLim.getState());
-        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
-        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
+//        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
+//        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
 
         arm = new ArmSubsystem(hardwareMap);
-        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
+//        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
 
         basket = new BasketSubsystem(hardwareMap);
 
