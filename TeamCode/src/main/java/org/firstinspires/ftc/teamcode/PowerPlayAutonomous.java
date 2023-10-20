@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import static org.inventors.ftc.robotbase.RobotEx.OpModeType.AUTO;
 
+import com.acmerobotics.roadrunner.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -14,11 +15,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.inventors.ftc.robotbase.DriveConstants;
-import org.inventors.ftc.robotbase.MecanumDrivePPV2;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystemNew;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.AprilTagDetectionSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
-import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.ElevatorCommand;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.BasketSubsystem;
@@ -27,7 +26,8 @@ import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ConeDetectorSubs
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ElevatorSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.FrontSliderSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.LimitSwitchSubsystem;
-import org.inventors.ftc.robotbase.GamepadExEx;
+import org.inventors.ftc.robotbase.hardware.GamepadExEx;
+import org.inventors.ftc.robotbase.drivebase.MecanumDriveSubsystem;
 
 import java.util.HashMap;
 
@@ -35,11 +35,11 @@ import java.util.HashMap;
 public class PowerPlayAutonomous extends CommandOpMode {
     PowerPlayRobot slidy;
 
-    protected DriveConstants RobotConstants;
+    protected MecanumDriveSubsystem.Params RobotConstants;
 
     protected ElapsedTime runtime;
-    protected MecanumDrivePPV2 drive;
-    protected RoadRunnerSubsystem RR;
+    protected MecanumDriveSubsystem drive;
+    protected RoadRunnerSubsystemNew RR;
     protected AprilTagDetectionSubsystem april_tag;
     protected ClawSubsystem claw;
     protected ElevatorSubsystem elevator;
@@ -51,19 +51,20 @@ public class PowerPlayAutonomous extends CommandOpMode {
     protected boolean april_tag_found = false;
     Telemetry dashboardTelemetry;
     protected SequentialCommandGroup scoringCommand;
+    protected Pose2d pose = new Pose2d(0, 0, 0);
     @Override
     public void initialize() {
         GamepadExEx driverOp = new GamepadExEx(gamepad1);
         GamepadExEx toolOp = new GamepadExEx(gamepad2);
 
-        RobotConstants = new DriveConstants();
+        RobotConstants = new MecanumDriveSubsystem.Params();
 
         slidy = new PowerPlayRobot(hardwareMap, RobotConstants, telemetry, driverOp, toolOp, AUTO, true,
                 false);
 
-        drive = new MecanumDrivePPV2(hardwareMap, AUTO, RobotConstants);
+        drive = new MecanumDriveSubsystem(hardwareMap, pose, AUTO);
 
-        RR = new RoadRunnerSubsystem(drive, false);
+        RR = new RoadRunnerSubsystemNew(drive);
 
         april_tag = new AprilTagDetectionSubsystem(slidy.camera, dashboardTelemetry);
 
@@ -110,18 +111,16 @@ public class PowerPlayAutonomous extends CommandOpMode {
         if (isStopRequested()) return;
 
         schedule(new SequentialCommandGroup(
-                new InstantCommand(RR::runHS2, RR),
-                scoringCommand
-        ));
+                new InstantCommand(RR::runHOME_TO_SCORING, RR), scoringCommand));
 
         //Select Command Auto
         new Trigger(() -> runtime.seconds() >= 20).whenActive(
                 new SelectCommand(
                         new HashMap<Object, Command>() {{
-                            put(april_tag.LEFT, new InstantCommand(RR::runP3, RR));
-                            put(april_tag.MIDDLE, new InstantCommand(RR::runTOMID, RR));
-                            put(april_tag.RIGHT, new InstantCommand(RR::runP1, RR));
-                            put(-1, new InstantCommand(RR::runTOMID, RR));
+                            put(april_tag.LEFT, new InstantCommand(RR::runPARKING_3, RR));
+                            put(april_tag.MIDDLE, new InstantCommand(RR::runPARKING_2, RR));
+                            put(april_tag.RIGHT, new InstantCommand(RR::runPARKING_1, RR));
+                            put(-1, new InstantCommand(RR::runPARKING_2, RR));
                         }},
                         () -> april_tag_found ? april_tag.getTagOfInterest().id : -1
                 )

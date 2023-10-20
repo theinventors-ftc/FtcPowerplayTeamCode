@@ -23,9 +23,10 @@ import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ConeDetectorSubs
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ElevatorSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.FrontSliderSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.LimitSwitchSubsystem;
-import org.inventors.ftc.robotbase.DriveConstants;
-import org.inventors.ftc.robotbase.GamepadExEx;
+import org.inventors.ftc.robotbase.hardware.GamepadExEx;
 import org.inventors.ftc.robotbase.RobotEx;
+import org.inventors.ftc.robotbase.drivebase.MecanumDriveSubsystem;
+import org.inventors.ftc.robotbase.hardware.GamepadExEx;
 
 public class PowerPlayRobot extends RobotEx {
     //----------------------------------- Initialize Subsystems -----------------------------------//
@@ -42,13 +43,13 @@ public class PowerPlayRobot extends RobotEx {
 
     private int index = 0;
 
-    public PowerPlayRobot(HardwareMap hm, DriveConstants RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
+    public PowerPlayRobot(HardwareMap hm, MecanumDriveSubsystem.Params RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
                           GamepadExEx toolOp) {
         super(hm, RobotConstants, telemetry, driverOp, toolOp, OpModeType.TELEOP, false,
                 false);
     }
 
-    public PowerPlayRobot(HardwareMap hm, DriveConstants RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
+    public PowerPlayRobot(HardwareMap hm, MecanumDriveSubsystem.Params RobotConstants, Telemetry telemetry, GamepadExEx driverOp,
                           GamepadExEx toolOp, OpModeType opModeType, boolean camera,
                           boolean cameraFollower) {
         super(hm, RobotConstants, telemetry, driverOp, toolOp, opModeType, camera,

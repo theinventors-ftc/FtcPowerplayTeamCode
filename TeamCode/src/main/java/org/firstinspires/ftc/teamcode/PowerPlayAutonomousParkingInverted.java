@@ -11,7 +11,6 @@ import org.inventors.ftc.robotbase.MecanumDrivePPV2;
 import org.inventors.ftc.opencvpipelines.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.AprilTagDetectionSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
-import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystem;
 import org.inventors.ftc.robotbase.GamepadExEx;
 
 @Autonomous(name = "AutoOnlyParkingInv", group = "Final Autonomous")

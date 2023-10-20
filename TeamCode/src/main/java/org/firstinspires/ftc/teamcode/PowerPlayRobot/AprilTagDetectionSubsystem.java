@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.PowerPlayRobot;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.inventors.ftc.robotbase.Camera;
+import org.inventors.ftc.robotbase.sensors.Camera;
 import org.openftc.apriltag.AprilTagDetection;
 
 import java.util.ArrayList;
@@ -48,9 +48,9 @@ public class AprilTagDetectionSubsystem {
                     telemetry.addLine(String.format("Translation X: %.2f feet", tagOfInterest.pose.x*FEET_PER_METER));
                     telemetry.addLine(String.format("Translation Y: %.2f feet", tagOfInterest.pose.y*FEET_PER_METER));
                     telemetry.addLine(String.format("Translation Z: %.2f feet", tagOfInterest.pose.z*FEET_PER_METER));
-                    telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(tagOfInterest.pose.yaw)));
-                    telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(tagOfInterest.pose.pitch)));
-                    telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(tagOfInterest.pose.roll)));
+//                    telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(tagOfInterest.pose.yaw)));
+//                    telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(tagOfInterest.pose.pitch)));
+//                    telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(tagOfInterest.pose.roll)));
 
                 }
             }
@@ -68,9 +68,9 @@ public class AprilTagDetectionSubsystem {
         telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x*FEET_PER_METER));
         telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y*FEET_PER_METER));
         telemetry.addLine(String.format("Translation Z: %.2f feet", detection.pose.z*FEET_PER_METER));
-        telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
-        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
-        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
+//        telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
+//        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
+//        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
     }
 
 }
