@@ -4,12 +4,9 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.arcrobotics.ftclib.command.SubsystemBase;
-
 import org.inventors.ftc.robotbase.drivebase.MecanumDriveSubsystem;
 
 public class RoadRunnerSubsystemNew extends SubsystemBase {
-
-    protected MecanumDriveSubsystem.FollowTrajectoryAction followTrajectoryAction;
 
     protected MecanumDriveSubsystem driveRR;
     protected Action HomeToScoring;
@@ -26,7 +23,7 @@ public class RoadRunnerSubsystemNew extends SubsystemBase {
     protected Pose2d parking_3 = new Pose2d(60, -12, Math.toRadians(90));
 
     public RoadRunnerSubsystemNew(MecanumDriveSubsystem drive){
-        driveRR = drive;
+        this.driveRR = drive;
 
         HomeToScoring = driveRR.actionBuilder(homePose)
                 .lineToXSplineHeading(midPoseY, Math.toRadians(-13.25))
@@ -44,6 +41,7 @@ public class RoadRunnerSubsystemNew extends SubsystemBase {
         Parking_3 = driveRR.actionBuilder(scoringPose)
                 .splineToSplineHeading(parking_3, Math.toRadians(-90))
                 .build();
+
     }
 
     public void runHOME_TO_SCORING(){Actions.runBlocking(HomeToScoring);}
