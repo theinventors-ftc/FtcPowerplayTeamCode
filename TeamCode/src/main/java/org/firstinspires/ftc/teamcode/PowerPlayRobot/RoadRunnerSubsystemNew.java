@@ -1,9 +1,17 @@
 package org.firstinspires.ftc.teamcode.PowerPlayRobot;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SubsystemBase;
+
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.CommandAction;
+import org.firstinspires.ftc.teamcode.PowerPlayRobot.subsystems.ArmSubsystem;
 import org.inventors.ftc.robotbase.drivebase.MecanumDriveSubsystem;
 
 public class RoadRunnerSubsystemNew extends SubsystemBase {
@@ -13,6 +21,11 @@ public class RoadRunnerSubsystemNew extends SubsystemBase {
     protected Action Parking_1;
     protected Action Parking_2;
     protected Action Parking_3;
+    protected Action Test;
+
+    protected ArmSubsystem arm;
+    protected InstantCommand armCommand;
+    protected CommandAction CommandToAction;
 
     protected Pose2d homePose = new Pose2d(35  ,-72 + 4.4 + (13.2/2), Math.toRadians(90));
     protected double midPoseY = -20;
@@ -24,6 +37,15 @@ public class RoadRunnerSubsystemNew extends SubsystemBase {
 
     public RoadRunnerSubsystemNew(MecanumDriveSubsystem drive){
         this.driveRR = drive;
+
+        /////////////////////////////////INIT////////////////////////////
+        arm = new ArmSubsystem(hardwareMap);
+        armCommand = new InstantCommand(arm::setIntake, arm);
+        //////////////////////////////////////////////////////////////////
+
+        Test = driveRR.actionBuilder(new Pose2d(0, 0, 0))
+                .lineToX(20)
+                .build();
 
         HomeToScoring = driveRR.actionBuilder(homePose)
                 .lineToXSplineHeading(midPoseY, Math.toRadians(-13.25))
@@ -51,5 +73,7 @@ public class RoadRunnerSubsystemNew extends SubsystemBase {
     public void runPARKING_2(){Actions.runBlocking(Parking_2);}
 
     public void runPARKING_3(){Actions.runBlocking(Parking_3);}
+
+    public void TEST(){Actions.runBlocking(new ParallelAction(Test, new CommandAction(armCommand)));}
 }
 
