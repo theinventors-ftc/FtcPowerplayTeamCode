@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.MecanumDrivePPV2;
-import org.firstinspires.ftc.teamcode.PowerPlayRobot.AprilTagDetectionSubsystem;
+//import org.firstinspires.ftc.teamcode.PowerPlayRobot.AprilTagDetectionSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.PowerPlayRobot;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.RoadRunnerSubsystem;
 import org.firstinspires.ftc.teamcode.PowerPlayRobot.commands.ElevatorCommand;
@@ -38,7 +38,7 @@ public class CommandGroupTest extends CommandOpMode {
     protected ElapsedTime runtime;
     protected MecanumDrivePPV2 drive;
     protected RoadRunnerSubsystem RR;
-    protected AprilTagDetectionSubsystem april_tag;
+//    protected AprilTagDetectionSubsystem april_tag;
     protected ClawSubsystem claw;
     protected ElevatorSubsystem elevator;
     protected BasketSubsystem basket;

@@ -27,6 +27,9 @@ import org.inventors.ftc.robotbase.DriveConstants;
 import org.inventors.ftc.robotbase.GamepadExEx;
 import org.inventors.ftc.robotbase.RobotEx;
 
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
+
 public class PowerPlayRobot extends RobotEx {
     //----------------------------------- Initialize Subsystems -----------------------------------//
     private ClawSubsystem claw;
@@ -36,6 +39,8 @@ public class PowerPlayRobot extends RobotEx {
     private ArmSubsystem arm;
     private BasketSubsystem basket;
     private ConeDetectorSubsystem cone_detector;
+
+    private TelemetrySubsystem telemetrySubsystem;
     //----------------------------------- Initialize Commands ------------------------------------//
     private RumbleCommand rumbleCommand;
     private SequentialCommandGroup scoringCommand;
@@ -57,6 +62,8 @@ public class PowerPlayRobot extends RobotEx {
 
     @Override
     public void initMechanismsAutonomous(HardwareMap hardwareMap) {
+        telemetrySubsystem = new TelemetrySubsystem(this.getTelemetry(), this.getDashboardTelemetry());
+
         claw = new ClawSubsystem(hardwareMap);
 
         elevator = new ElevatorSubsystem(hardwareMap);
@@ -66,11 +73,11 @@ public class PowerPlayRobot extends RobotEx {
 
         frontSlider = new FrontSliderSubsystem(hardwareMap, () -> rightServoLim.getState(),
                 () -> leftServoLim.getState());
-        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
-        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
+//        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
+//        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
 
         arm = new ArmSubsystem(hardwareMap);
-        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
+//        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
 
         basket = new BasketSubsystem(hardwareMap);
     }
@@ -86,11 +93,13 @@ public class PowerPlayRobot extends RobotEx {
 
         frontSlider = new FrontSliderSubsystem(hardwareMap, () -> rightServoLim.getState(),
                 () -> leftServoLim.getState());
-        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
-        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
+//        telemetrySubsystem.addMonitor("Right Limit Switch", () -> frontSlider.rightEnd().getAsBoolean());
+//        telemetrySubsystem.addMonitor("Left Limit Switch", () -> frontSlider.leftEnd().getAsBoolean());
+
+        telemetrySubsystem.addMonitor("Right Limit Switch", () -> true);
 
         arm = new ArmSubsystem(hardwareMap);
-        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
+//        telemetrySubsystem.addMonitor("Arm Pos", () -> arm.getArmPosition());
 
         basket = new BasketSubsystem(hardwareMap);
 

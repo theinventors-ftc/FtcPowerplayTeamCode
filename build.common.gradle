@@ -88,21 +88,20 @@ android {
         versionName vName
     }
 
-    // Advanced user code might just want to use Vuforia directly, so we set up the libs as needed
     // http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.BuildType.html
     buildTypes {
         release {
             signingConfig signingConfigs.release
 
             ndk {
-                abiFilters "armeabi-v7a"
+                abiFilters "armeabi-v7a", "arm64-v8a"
             }
         }
         debug {
             debuggable true
             jniDebuggable true
             ndk {
-                abiFilters "armeabi-v7a"
+                abiFilters "armeabi-v7a", "arm64-v8a"
             }
         }
     }
@@ -123,11 +122,6 @@ android {
 }
 
 repositories {
-    flatDir {
-        dirs rootProject.file('libs')
-    }
-    repositories {
-        mavenCentral()
-    }
+    mavenCentral()
 }
 
